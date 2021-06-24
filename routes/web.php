@@ -24,7 +24,8 @@ Route::get('/charts/create', 'App\Http\Controllers\ChartController@create')->nam
 
 Route::post('charts/create','App\Http\Controllers\ChartController@store')->middleware('auth');
 Route::delete('charts/{id}', 'App\Http\Controllers\ChartController@destroy')->middleware('auth');
-
+Route::get('charts/edit/{id}','App\Http\Controllers\ChartController@showSpecific')->middleware('auth');
+Route::post('edit', 'App\Http\Controllers\ChartController@update')->middleware('auth');
 Route::get('/charts/{id}','App\Http\Controllers\ChartController@show')->name('chart.details');
 
 // Route::post('/create','App\Http\Controllers\ChartController@create');

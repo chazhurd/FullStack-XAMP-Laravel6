@@ -9,4 +9,5 @@ class Chart extends Model
 {
     use HasFactory;
     //prtotected $table = 'charts'
+    public $timestamps=false;
 }

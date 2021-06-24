@@ -47,4 +47,18 @@ class ChartController extends Controller
 
         return redirect('charts')->with('msg','Practice Removed');
     }
+
+    public function showSpecific($id){
+        $client = Chart::findOrFail($id);
+
+        return view('charts.update',['client'=>$client]);
+    }
+    
+    public function update(Request $req){
+        $client = Chart::findOrFail($req->id);
+        $client->type=$req->type;
+        $client->amount=$req->amount;
+        $client->save();
+        return redirect('charts')->with('msg', 'Practice Updated');
+    }
 }

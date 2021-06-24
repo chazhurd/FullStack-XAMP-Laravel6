@@ -18,55 +18,16 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
         </style>
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
         <script>
-            var currentAmount = 0;
-            var currentType = "";
-            const years = ['2021', '2020', '2019', '2018', '2017', '2016'];
-            var subscriptionAmounts = [];
-            var dynVar;
-            var max;
-            var min;
-            $(document).ready(function(){
-                currentAmount = parseInt(document.getElementById("hiddenData").innerHTML);
-                currentType = document.getElementById("hiddenType").innerHTML;
-                var max = (currentAmount + Math.floor(currentAmount/2));
-                var min = Math.floor(((currentAmount - currentAmount*.8)));
-                subscriptionAmounts.push(currentAmount);
-                //creating pseudo data based around the current value
-                for(var x = 1; x < years.length; x++){
-                    dynVar = Math.ceil(Math.random() * (max - min) + min);
-                    debugger;
-                    subscriptionAmounts.push(dynVar);
-                }
-
-             });
-             //using pseudo data to populate the chart
-            $(document).ready(function(){
-                var options = {
-                series: [{
-                name: currentType,
-                data: subscriptionAmounts,
-                }],
-                chart: {
-                height: 350,
-                type: 'radar',
-                },
-                title: {
-                text: 'Subscription Tracker'
-                },
-                xaxis: {
-                categories: years
-                }
-                };
-
-                var chart = new ApexCharts(document.querySelector("#chartWeb"), options);
-                chart.render();
-
-            });
+            $(function(){
+                $("p").text("the dom is ready now");
+            })
         </script>
+
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0" style="background-color:#1a202c;">
@@ -83,11 +44,10 @@
                     @endauth
                 </div>
             @endif -->
-            <br/>
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <a href="/"><img src="/img/medlogo.png" width="600px" style="padding-top: 50px"></a>
+                    <a href="/"><img src="/img/medlogo.png" width="600px" style="padding-top: 50px"> </a>
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -97,35 +57,39 @@
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                                 <div class="ml-4 text-lg leading-7 font-semibold" style="text-align: center;">Customer Practice Acquisition Data</div>
                             </div>
+
                         </div>
+
                     </div>
                 
-                    <div style=" background-image: linear-gradient(white, rgba(255, 0, 0, 0.514)); padding: 20px; text-align: center;">
-                        Details about the practice and their subscription based on years <br/><br/>
-                        Type: {{ $chartData->type}} - Amount of Subscription: {{ $chartData->amount}}<br/><br/>
-                        <div id="chartWeb"></div>
-                        <div id="bottomRow" style="text-align: left;">
-                            
-                        <a href='/charts/edit/{{$chartData->id}}'><button style="background-color: rgb(0, 77, 0); float: right; width: 8vw; height:2vw;border-radius:5px;padding:5px;">Edit</button></form></a>
-
-                        <a href='/charts' style="color: blue;">Back</a><form action="/charts/{{$chartData->id}}" method="POST" style="display:inline">@csrf @method('DELETE')<button style="background-color: red; float: right; width: 8vw; height:2vw;border-radius:5px;padding:5px;">Delete</button></form>
-                        </div>
+                    <div style=" background-image: linear-gradient(white, rgba(255, 0, 0, 0.514)); padding: 15px;">
+                        <h1>Edit Practice: {{$client->type}}</h1>
+                        <form action="/edit" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$client->id}}">
+                            <label for="type">Type:</label>
+                            <input type="text" id="type" name="type" style="border-radius:5px;" value="{{ $client->type }}" required = required>
+                            <label for="type">Amount:</label>
+                            <input type="number" id="amount" name="amount" style="border-radius:5px;" value = "{{ $client->amount }}" required = required>
+                            <input type="submit" value="Update Client" style="border-radius:5px;">
+                        </form>
+                        <br/>
+                    <a href="/charts" style="color: blue;">Back</a>
                     </div>
-                </div>
+                
 
-                <div id="debugger"></div>
+                </div>
 
 
                 <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Medicharts &#174; 2021
                 </div>
-                <div id="hiddenData" style="display: none;">{{$chartData->amount}}</div>
-                <div id="hiddenType" style="display: none;">{{$chartData->type}}</div>      
+                            
 
             </div>
 
         </div>
-
+        <p>The Dom Isnt</p>
 
     </body>
 </html>
