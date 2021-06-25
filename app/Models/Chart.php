@@ -10,4 +10,6 @@ class Chart extends Model
     use HasFactory;
     //prtotected $table = 'charts'
     public $timestamps=false;
+    protected $table = "charts";
+    protected $fillable = ["type","amount"];
 }

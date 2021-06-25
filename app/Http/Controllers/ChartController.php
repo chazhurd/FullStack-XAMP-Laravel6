@@ -62,4 +62,16 @@ class ChartController extends Controller
         
         return redirect('charts')->with('msg', 'Practice Updated');
     }
+
+    public function addPractice(Request $request){
+        $chart = new Chart();
+        $chart->type= $request->type;
+        $chart->amount = $request->amount;
+        $chart->save();
+        return response()->json($chart);
+    }
+
+    public function storedAjax(){
+        return redirect('charts')->with('msg', 'Practice Added');
+    }
 }

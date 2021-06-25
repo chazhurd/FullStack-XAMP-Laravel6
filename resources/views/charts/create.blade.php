@@ -20,6 +20,11 @@
             }
 
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0" style="background-color:#1a202c;">
@@ -55,7 +60,8 @@
                     </div>
                 
                     <div style=" background-image: linear-gradient(white, rgba(255, 0, 0, 0.514)); padding: 15px;">
-                        <h1>Create new Type</h1>
+                        <h1>Create new Type <a href="#" class="btn btn-success" data-toggle="modal" data-target="#practiceModal" style="float: right; padding: 10px">+ Add New Type AJAX</a></h1>
+                        <br>
                         <form action="/charts/create" method="POST">
                             @csrf
                             <label for="type">Type:</label>
@@ -63,10 +69,13 @@
                             <label for="type">Amount:</label>
                             <input type="number" id="amount" name="amount" style="border-radius:5px;" required = required>
                             <input type="submit" value="Input Client" style="border-radius:5px;">
+                            <br>
+                            
                         </form>
+                        <!-- <a href="#" class="btn btn-success" data-toggle="modal" data-target="#studentModal" style="float: right;">+ Add New Practice AJAX</a> -->
                         <br/>
-                    <a href="/charts" style="color: blue;">Back</a>
-                    </div>
+                    <a href="/charts" style="color: blue;">Back</a>  
+                </div>
                 
 
                 </div>
@@ -81,6 +90,59 @@
 
         </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="practiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Practice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form id="practiceForm">
+                        @csrf
+                        <div class="form-group">
+                            <label for="type">Practice Type</label>
+                            <input type="text" class="form-control" id="typeModal"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" id="amountModal"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="debugger"></div>
+        <script>
+        $("#practiceForm").submit(function(e){
+          e.preventDefault();
 
+          let type = $('#typeModal').val();
+          let amount = $('#amountModal').val();
+          let _token = $("input[name=_token").val();
+
+
+          $.ajax({
+              url: "{{route('practice.add')}}",
+              type: "POST",
+              data:{
+                  type:type,
+                  amount:amount,
+                  _token:_token
+              },
+              success: function(response)
+              {
+                  if(response){
+                      window.location.href = "/store-ajax";
+                    }
+              }
+            })
+
+        })
+        </script>
     </body>
 </html>
