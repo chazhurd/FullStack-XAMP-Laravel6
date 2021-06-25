@@ -24,7 +24,7 @@
         <script>
             var currentAmount = 0;
             var currentType = "";
-            const years = ['2021', '2020', '2019', '2018', '2017', '2016'];
+            const years = ['2021', '2016', '2017', '2018', '2019', '2020'];
             var subscriptionAmounts = [];
             var dynVar;
             var max;
@@ -55,7 +55,8 @@
                 type: 'radar',
                 },
                 title: {
-                text: 'Subscription Tracker'
+                text: 'Subscriptions per Year',
+                align: 'Center'
                 },
                 xaxis: {
                 categories: years
@@ -99,11 +100,13 @@
                             </div>
                         </div>
                     </div>
-                
+                    
                     <div style=" background-image: linear-gradient(white, rgba(255, 0, 0, 0.514)); padding: 20px; text-align: center;">
+                    Type:<b> {{ $chartData->type}} </b>- Current Amout of Subscriptions (2021) : <b> {{ $chartData->amount}} </b><br/><br/>
+                    <div id="chartWeb"></div>
                         Details about the practice and their subscription based on years <br/><br/>
-                        Type: {{ $chartData->type}} - Amount of Subscription: {{ $chartData->amount}}<br/><br/>
-                        <div id="chartWeb"></div>
+                        
+                        
                         <div id="bottomRow" style="text-align: left;">
                             
                         <a href='/charts/edit/{{$chartData->id}}'><button style="background-color: rgb(0, 77, 0); float: right; width: 8vw; height:2vw;border-radius:5px;padding:5px;">Edit</button></form></a>

@@ -59,6 +59,7 @@ class ChartController extends Controller
         $client->type=$req->type;
         $client->amount=$req->amount;
         $client->save();
+        
         return redirect('charts')->with('msg', 'Practice Updated');
     }
 }

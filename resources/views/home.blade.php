@@ -17,7 +17,8 @@
 
                     {{ __('You are logged in!') }}
                     <br>
-                    <img src="https://jonmgomes.com/wp-content/uploads/2020/01/Bar_Chart_4_Columns_.gif" width=500px style="opacity:0.6; border-radius: 5px">
+                    <br><br>
+                    <img src="https://jonmgomes.com/wp-content/uploads/2020/01/Bar_Chart_4_Columns_.gif" width=300vw style="opacity:0.6; border-radius: 5px">
                 </div>
             </div>
         </div>

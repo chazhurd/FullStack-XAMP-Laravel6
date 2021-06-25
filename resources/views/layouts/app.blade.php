@@ -26,8 +26,8 @@
     </style>
 </head>
 <body>
-    <div id="myContainer" style="background-color: rgb(0, 0, 0); height: 80vh; border-radius: 20px;">
-        <img src="/img/medmed.png" style="position: absolute; z-index: 0; width: 20vw; left: 60vw; top: 5vw">
+    <div id="myContainer" style="background-color: rgb(0, 0, 0); height: 100vh; border-radius: 20px;">
+        <img src="/img/medmed.png" style="position: absolute; z-index: 0; width: 20vw; left: 75vw; top: 5vw">
     <div id="app"> 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container" style="text-align: center; color: white;">

@@ -22,12 +22,6 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-        <script>
-            $(function(){
-                $("p").text("the dom is ready now");
-            })
-        </script>
-
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0" style="background-color:#1a202c;">
@@ -74,7 +68,7 @@
                             <input type="submit" value="Update Client" style="border-radius:5px;">
                         </form>
                         <br/>
-                    <a href="/charts" style="color: blue;">Back</a>
+                    <a href="/charts/{{$client->id}}" style="color: blue;">Back</a>
                     </div>
                 
 

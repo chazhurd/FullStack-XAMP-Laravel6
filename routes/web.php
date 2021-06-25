@@ -23,11 +23,16 @@ Route::get('/charts', 'App\Http\Controllers\ChartController@index')->name('chart
 Route::get('/charts/create', 'App\Http\Controllers\ChartController@create')->name('chart.create')->middleware('auth');
 
 Route::post('charts/create','App\Http\Controllers\ChartController@store')->middleware('auth');
+
 Route::delete('charts/{id}', 'App\Http\Controllers\ChartController@destroy')->middleware('auth');
+
 Route::get('charts/edit/{id}','App\Http\Controllers\ChartController@showSpecific')->middleware('auth');
+
 Route::post('edit', 'App\Http\Controllers\ChartController@update')->middleware('auth');
+
 Route::get('/charts/{id}','App\Http\Controllers\ChartController@show')->name('chart.details');
 
+Route::get('/activeusers', 'App\Http\Controllers\ActiveUsersController@index');
 // Route::post('/create','App\Http\Controllers\ChartController@create');
 Auth::routes([
     // 'register' =>false                can take away the ability to register
