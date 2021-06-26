@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    Debugbar::info('Hello there');
     return view('welcome');
 });
 
